@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>agent-test-suit</artifactId>
+        <groupId>com.keep.infra.agent</groupId>
+        <version>${revision}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>component-case</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>dubbo-2.6.x</module>
+        <module>elasticsearch-5.x</module>
+        <module>elasticsearch-6.x</module>
+        <module>feign-default-http-9.x</module>
+        <module>hbase-1.x</module>
+        <module>hbase-2.x</module>
+        <module>apache-httpclient-4.x</module>
+        <module>apache-httpasyncclient-4.x</module>
+        <module>jedis-2.x</module>
+        <module>mongodb-3.x</module>
+        <module>mysql-5.x</module>
+        <module>okhttp-3.x</module>
+        <module>jetty-server-9.x</module>
+        <module>tomcat-7.x-8.x</module>
+        <module>spring-kafka-1.x</module>
+        <module>jetcache</module>
+        <module>monitor-api-2.2</module>
+        <module>monitor-api-2.4</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

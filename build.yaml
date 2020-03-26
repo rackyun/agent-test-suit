@@ -1,0 +1,12 @@
+type:
+  - app
+  - lib
+
+apps:
+  - script: ./build.sh
+    target: ./output/kmonitor-agent.tar
+    name: kmonitor-agent
+
+libs:
+  - monitor-annotation
+  - monitor-api

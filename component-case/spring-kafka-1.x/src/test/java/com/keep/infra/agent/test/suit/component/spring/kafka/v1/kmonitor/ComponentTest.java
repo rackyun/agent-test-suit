@@ -1,0 +1,102 @@
+package com.keep.infra.agent.test.suit.component.spring.kafka.v1.kmonitor;
+
+import com.keep.infra.agent.test.suit.common.AgentTestExecutor;
+import com.keep.infra.agent.test.suit.common.Constants;
+import com.keep.infra.agent.test.suit.common.TestConfig;
+import com.keep.infra.agent.test.suit.keep.monitor.AbstractKeepMonitorComponentTest;
+import com.keep.infra.agent.test.suit.keep.monitor.MockFalconAgentServer;
+import com.keep.infra.agent.test.suit.keep.monitor.client.FalconMetricsQueryClient;
+import com.keep.infra.agent.test.suit.keep.monitor.client.entry.FalconMetricEntry;
+import com.keep.infra.agent.test.suit.keep.monitor.util.FalconMetricUtil;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import org.apache.catalina.LifecycleException;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.io.File;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+/**
+ * @author yunhai.hu
+ * at 2020/3/13
+ */
+public class ComponentTest extends AbstractKeepMonitorComponentTest {
+
+    private static final String[] NAME_POOL = new String[]{"jack", "tom", "rose", "mick"};
+    private static final String TEST_API_PATH = "/test/springKafka/v1/run";
+    private MockFalconAgentServer agentServer;
+    private FalconMetricsQueryClient metricsQueryClient;
+    private Random random = new Random();
+
+    private String producerAppName = "agent-test-spring-kafka-v1-producer";
+    private String consumerAppName = "agent-test-spring-kafka-v1-consumer";
+
+    @Before
+    public void setUp() throws Exception {
+        metricsQueryClient = new FalconMetricsQueryClient("http://localhost:1988");
+    }
+
+    @After
+    public void tearDown() {
+    }
+
+    @Test
+    public void agentTest() throws Exception {
+        agentServer = new MockFalconAgentServer();
+        agentServer.start();
+
+        File directory = new File(".");
+        String baseDir = directory.getCanonicalPath();
+        AgentTestExecutor producerExecutor = new AgentTestExecutor(baseDir + "/target/spring-kafka-1.x-producer.jar",
+                "com.keep.infra.agent.test.suit.component.spring.kafka.v1.producer.TestAppMain",
+                TestConfig.KMONITOR_AGENT_PATH,
+                "");
+        AgentTestExecutor consumerExecutor = new AgentTestExecutor(baseDir + "/target/spring-kafka-1.x-consumer.jar",
+                "com.keep.infra.agent.test.suit.component.spring.kafka.v1.consumer.TestAppMain",
+                TestConfig.KMONITOR_AGENT_PATH,
+                "");
+
+        producerExecutor.start();
+        consumerExecutor.start();
+        try {
+            TimeUnit.SECONDS.sleep(Constants.SERVER_START_SECONDS);
+            invokeTestController();
+            TimeUnit.SECONDS.sleep(60);
+            verifyComponent();
+        } finally {
+            producerExecutor.close();
+            consumerExecutor.close();
+            agentServer.close();
+        }
+    }
+
+    @Override
+    public void verifyComponent() throws Exception {
+        FalconMetricEntry[] metricEntries = metricsQueryClient.getMetrics();
+        //todo fix
+        FalconMetricEntry[] targetMetric = FalconMetricUtil.findMetric(metricEntries, "kafka.producer.msg.timer.count");
+        assertTrue(targetMetric.length > 0);
+    }
+
+    private OkHttpClient httpClient = new OkHttpClient.Builder().connectTimeout(20, TimeUnit.SECONDS).build();
+
+    @Override
+    public void invokeTestController() throws Exception {
+        try(Response response = httpClient.newCall(new Request.Builder().url("http://localhost:8888" + TEST_API_PATH +
+                "?name=" + NAME_POOL[Math.abs(random.nextInt()) % 4]).
+                get().build()).execute()) {
+            int code = response.code();
+            String respBody = response.body().string();
+            assertEquals(200, code);
+            assertEquals("OK", respBody);
+        }
+    }
+
+}

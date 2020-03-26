@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <Property name="log.dir" value="./logs"/>
+    <appender name="CONSOLE"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS Z}{GMT+8} %thread] %-5level - %C{0}#%M:%L | %m%n</Pattern>
+        </layout>
+    </appender>
+    <appender name="appAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Append>true</Append>
+        <File>${log.dir}/app.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.dir}/app.log-%d{yyyy-MM-dd}</fileNamePattern>
+            <maxHistory>15</maxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSSZ}] %-5level [%t] %c{36} {%X} %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework.security">
+        <level value="ERROR"/>
+    </logger>
+
+    <logger name="org.apache.velocity">
+        <level value="FATAL"/>
+    </logger>
+
+    <!-- Suppress invalid warning messages from JSF -->
+    <logger name="org.apache.myfaces">
+        <level value="ERROR"/>
+    </logger>
+
+    <root level="DEBUG">
+        <!-- 统一日志输出 -->
+        <appender-ref ref="appAppender"/>
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</configuration>
