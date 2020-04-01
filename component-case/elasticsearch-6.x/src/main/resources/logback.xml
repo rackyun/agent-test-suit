@@ -34,7 +34,7 @@
         <level value="ERROR"/>
     </logger>
 
-    <root level="DEBUG">
+    <root level="INFO">
         <!-- 统一日志输出 -->
         <appender-ref ref="appAppender"/>
         <appender-ref ref="CONSOLE"/>

@@ -45,7 +45,7 @@ public class ComponentTest extends AbstractSkywalkingComponentTest {
         File directory = new File(".");
         String baseDir = directory.getCanonicalPath();
         String appName = "agent-test-mongodb-3x-" + random.nextInt(9999);
-        AgentTestExecutor executor = new AgentTestExecutor(baseDir + "/target/" + TestConfig.BUILD_JAR_NAME,
+        AgentTestExecutor executor = new AgentTestExecutor(baseDir + "/target/" + getJarName(),
                 "",
                 TestConfig.SW_AGENT_PATH,
                 "");
@@ -54,6 +54,7 @@ public class ComponentTest extends AbstractSkywalkingComponentTest {
             TimeUnit.SECONDS.sleep(Constants.SERVER_START_SECONDS);
             invokeTestController();
             TimeUnit.SECONDS.sleep(Constants.WAIT_TRACE_REPORT_SECONDS);
+            invokeTestController();
             verifyComponent();
         } finally {
             executor.close();

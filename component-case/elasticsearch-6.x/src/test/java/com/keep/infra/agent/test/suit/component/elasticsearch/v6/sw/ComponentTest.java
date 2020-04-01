@@ -30,7 +30,7 @@ public class ComponentTest extends AbstractSkywalkingComponentTest {
 
     private static final String[] NAME_POOL = new String[]{"jack", "tom", "rose", "mick"};
     private static final String COMPONENT_NAME = "transport-client";
-    private static final String DEFAULT_APP_CODE = "agent-test-elasticsearch6x";
+    private static final String DEFAULT_APP_CODE = "elasticsearch6x-component";
     private static final String TEST_API_PATH = "/test/elastic/v6/run";
     private TraceQueryClient traceQueryClient;
     private final Random random = new Random();
@@ -45,7 +45,7 @@ public class ComponentTest extends AbstractSkywalkingComponentTest {
         File directory = new File(".");
         String baseDir = directory.getCanonicalPath();
         String appName = "elastic-6x-" + random.nextInt(9999);
-        AgentTestExecutor executor = new AgentTestExecutor(baseDir + "/target/" + TestConfig.BUILD_JAR_NAME,
+        AgentTestExecutor executor = new AgentTestExecutor(baseDir + "/target/" + getJarName(),
                 "",
                 TestConfig.SW_AGENT_PATH,
                 "");
@@ -54,6 +54,7 @@ public class ComponentTest extends AbstractSkywalkingComponentTest {
             TimeUnit.SECONDS.sleep(Constants.SERVER_START_SECONDS);
             invokeTestController();
             TimeUnit.SECONDS.sleep(Constants.WAIT_TRACE_REPORT_SECONDS);
+            invokeTestController();
             verifyComponent();
         } finally {
             executor.close();

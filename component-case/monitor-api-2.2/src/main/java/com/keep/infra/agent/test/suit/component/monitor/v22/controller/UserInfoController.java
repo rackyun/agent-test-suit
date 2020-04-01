@@ -1,5 +1,7 @@
 package com.keep.infra.agent.test.suit.component.monitor.v22.controller;
 
+import com.keep.monitor.annotation.EnableMonitor;
+import com.keep.monitor.annotation.Timing;
 import com.keep.monitor.api.KMonitor;
 import com.keep.monitor.interfaces.metrics.ITimerContext;
 import org.slf4j.Logger;
@@ -17,6 +19,7 @@ import java.util.concurrent.TimeUnit;
  */
 @RestController("monitorV22Controller")
 @RequestMapping("/test/monitor/v22")
+@EnableMonitor
 public class UserInfoController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserInfoController.class);
@@ -34,6 +37,7 @@ public class UserInfoController {
         return "OK";
     }
 
+    @Timing("controller.testMethod")
     private void testMethod(String name) {
         try {
             TimeUnit.MILLISECONDS.sleep(100);

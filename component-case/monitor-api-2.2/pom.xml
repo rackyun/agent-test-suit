@@ -13,13 +13,19 @@
 
     <properties>
         <spring-boot.version>1.5.20.RELEASE</spring-boot.version>
+        <keep.monitor.version>2.2.1</keep.monitor.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.keep.monitor</groupId>
             <artifactId>monitor-api</artifactId>
-            <version>2.2.1</version>
+            <version>${keep.monitor.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.keep.monitor</groupId>
+            <artifactId>monitor-annotation</artifactId>
+            <version>${keep.monitor.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

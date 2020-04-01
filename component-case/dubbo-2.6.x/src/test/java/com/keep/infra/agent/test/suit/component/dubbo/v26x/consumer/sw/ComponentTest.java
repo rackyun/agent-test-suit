@@ -55,6 +55,7 @@ public class ComponentTest extends AbstractSkywalkingComponentTest {
             TimeUnit.SECONDS.sleep(Constants.SERVER_START_SECONDS);
             invokeTestController();
             TimeUnit.SECONDS.sleep(Constants.WAIT_TRACE_REPORT_SECONDS);
+            invokeTestController();
             verifyComponent();
         } finally {
             executor.close();
