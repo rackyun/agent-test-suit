@@ -86,7 +86,7 @@ public class ComponentTest extends AbstractSkywalkingComponentTest {
 
     @Override
     public void invokeTestController() throws Exception {
-        try(Response response = httpClient.newCall(new Request.Builder().url("http://localhost:8888" + TEST_API_PATH +
+        try(Response response = httpClient.newCall(new Request.Builder().url(TestConfig.TEST_SERVER_URL + TEST_API_PATH +
                 "?name=" + NAME_POOL[Math.abs(random.nextInt()) % 4]).
                 get().build()).execute()) {
             int code = response.code();

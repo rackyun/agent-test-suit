@@ -1,6 +1,8 @@
 package com.keep.infra.agent.test.suit.common;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.ListUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
@@ -48,6 +50,7 @@ public class AgentTestExecutor implements AutoCloseable {
         commands.add("-jar");
         commands.add(targetJarPath);
         ProcessBuilder processBuilder = new ProcessBuilder();
+        log.info("process {} will be start...", String.join(",", commands));
         process = processBuilder.command(commands).start();
 //        process = Runtime.getRuntime().exec(commands.toArray(new String[0]));
         started = true;

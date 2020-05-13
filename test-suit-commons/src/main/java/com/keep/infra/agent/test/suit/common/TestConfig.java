@@ -16,12 +16,19 @@ public class TestConfig {
 
     public static final String KMONITOR_AGENT_PATH;
 
+    public static final String TEST_SERVER_URL;
+
+    public static boolean START_SERVER;
+
     static {
         SW_AGENT_PATH = System.getProperty("skywalking-agent-path", "/Users/yunhai.hu/Documents/projects/java-projects/incubator-skywalking/skywalking-agent/skywalking-agent.jar");
         BUILD_JAR_NAME = System.getProperty("build-jar-name");
 
         KMONITOR_AGENT_PATH = System.getProperty("keep-monitor-agent-path", "/Users/yunhai.hu/Documents/projects/java-projects/keep-monitor" +
                 "/output/kmonitor-agent.jar");
+
+        TEST_SERVER_URL = System.getProperty("test-server-url", "http://localhost:8888");
+        START_SERVER = TEST_SERVER_URL.equals("http://localhost:8888");
     }
 
     public static class App {

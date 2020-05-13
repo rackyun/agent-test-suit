@@ -1,5 +1,7 @@
 package com.keep.infra.agent.test.suit.integration.v1;
 
+import io.prometheus.client.spring.boot.EnablePrometheusEndpoint;
+import io.prometheus.client.spring.boot.EnableSpringBootMetricsCollector;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration;
@@ -18,8 +20,10 @@ import org.springframework.context.annotation.PropertySource;
         MongoRepositoriesAutoConfiguration.class, EmbeddedMongoAutoConfiguration.class,
         MongoDataAutoConfiguration.class, KafkaAutoConfiguration.class},
 scanBasePackages = {"com.keep.infra.agent.test.suit.component"})
-@ImportResource(value = {"classpath:applicationContext-core.xml", "classpath:applicationContext-jdbc.xml"})
+@ImportResource(value = {"classpath:applicationContext-jdbc.xml"})
 @PropertySource(value = {"classpath:bootstrap.properties"})
+@EnablePrometheusEndpoint
+@EnableSpringBootMetricsCollector
 public class TestAppMain {
 
     public static void main(String[] args) throws Exception {

@@ -30,6 +30,7 @@
         <module>jetcache</module>
         <module>monitor-api-2.2</module>
         <module>monitor-api-2.4</module>
+        <module>keep-commons-queue</module>
     </modules>
 
     <build>

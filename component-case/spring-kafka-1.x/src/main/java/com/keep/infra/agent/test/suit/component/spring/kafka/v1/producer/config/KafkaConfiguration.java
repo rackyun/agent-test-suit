@@ -1,6 +1,7 @@
 package com.keep.infra.agent.test.suit.component.spring.kafka.v1.producer.config;
 
 import org.apache.kafka.clients.producer.ProducerConfig;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
@@ -17,6 +18,9 @@ import java.util.Map;
 @Configuration("producerConfiguration")
 public class KafkaConfiguration {
 
+    @Value("${kafka.brokers}")
+    private String kafkaBrokers;
+
     @Bean
     public KafkaTemplate<String, String> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
@@ -29,7 +33,7 @@ public class KafkaConfiguration {
     @Bean
     public Map<String, Object> producerConfigs() {
         Map<String, Object> props = new HashMap<>(16);
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "dev-kafka-01.dev.keep:9092");
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBrokers);
         props.put(ProducerConfig.RETRIES_CONFIG, "3");
         props.put(ProducerConfig.ACKS_CONFIG, "all");
         props.put(ProducerConfig.COMPRESSION_TYPE_CONFIG, "gzip");

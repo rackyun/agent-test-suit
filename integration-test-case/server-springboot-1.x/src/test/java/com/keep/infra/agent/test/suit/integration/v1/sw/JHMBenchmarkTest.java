@@ -39,15 +39,19 @@ public class JHMBenchmarkTest {
 
     @Before
     public void testSetUp() {
-        mockServer.start();
+        if (TestConfig.START_SERVER) {
+            mockServer.start();
+        }
     }
 
     @After
     public void testTearDown() {
-        try {
-            mockServer.close();
-        } catch (LifecycleException e) {
-            e.printStackTrace();
+        if (TestConfig.START_SERVER) {
+            try {
+                mockServer.close();
+            } catch (LifecycleException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -57,12 +61,13 @@ public class JHMBenchmarkTest {
         try {
             Options options = new OptionsBuilder()
                     .include(this.getClass().getName() + ".*")
-                    .mode(Mode.Throughput)
+                    .mode(Mode.All)
                     .timeUnit(TimeUnit.SECONDS)
                     .warmupIterations(3)
+                    .warmupTime(TimeValue.seconds(30))
                     .threads(50)
                     .measurementIterations(5)
-                    .measurementTime(TimeValue.seconds(10))
+                    .measurementTime(TimeValue.seconds(30))
                     .forks(1)
                     .shouldFailOnError(true)
                     .shouldDoGC(true)
@@ -80,9 +85,9 @@ public class JHMBenchmarkTest {
 
     private List<AbstractSkywalkingComponentTest> componentTestList = new ArrayList<>();
     private AtomicInteger counter = new AtomicInteger(0);
-    private AgentTestExecutor executor;
+    private AgentTestExecutor executor = null;
 
-    @Param({"OFF", "ON"})
+//    @Param({"OFF", "ON"})
     private TestConfig.AGENT_SWITCH agentSwitch = TestConfig.AGENT_SWITCH.OFF;
 
     @Setup
@@ -93,11 +98,15 @@ public class JHMBenchmarkTest {
             try {
                 abstractComponentTest.setUp();
                 componentTestList.add(abstractComponentTest);
+                logger.info("component {} will be test.", abstractComponentTest.getClass().getCanonicalName());
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        startTargetServer();
+
+        if (TestConfig.START_SERVER) {
+            startTargetServer();
+        }
     }
 
     @TearDown

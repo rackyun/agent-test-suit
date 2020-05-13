@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info">
+    <Appenders>
+        <!-- 如果业务也打到 kafka.log 文件怎么办 -->
+        <RollingRandomAccessFile name="AppAppender" fileName="logs/app.log"
+                                 filePattern="logs/app.log.%d{yyyy-MM-dd}">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} | %m%n</Pattern>
+            </PatternLayout>
+            <!-- 备份策略:满足其中一个就可以启动备份-->
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingRandomAccessFile>
+
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="AppAppender"/>
+        </Root>
+    </Loggers>
+</Configuration>

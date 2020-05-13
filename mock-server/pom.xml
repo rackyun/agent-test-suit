@@ -53,12 +53,15 @@
         </dependency>
     </dependencies>
 
-    <!--<build>
+    <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
+                <configuration>
+                    <classifier>exec</classifier>
+                </configuration>
                 <executions>
                     <execution>
                         <id>repackage</id>
@@ -69,5 +72,5 @@
                 </executions>
             </plugin>
         </plugins>
-    </build>-->
+    </build>
 </project>

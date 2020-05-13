@@ -36,11 +36,14 @@ public class IntegrationTest {
     public void agentTest() throws Exception {
         File directory = new File(".");
         String baseDir = directory.getCanonicalPath();
-        AgentTestExecutor executor = new AgentTestExecutor(baseDir + "/target/server-springboot-1.x.jar",
-                "",
-                TestConfig.SW_AGENT_PATH,
-                "");
-        executor.start();
+        AgentTestExecutor executor = null;
+        if (TestConfig.START_SERVER) {
+            executor = new AgentTestExecutor(baseDir + "/target/server-springboot-1.x.jar",
+                    "",
+                    TestConfig.SW_AGENT_PATH,
+                    "");
+            executor.start();
+        }
         try {
             TimeUnit.SECONDS.sleep(30);
             ServiceLoader<AbstractSkywalkingComponentTest> componentTests = ServiceLoader.load(AbstractSkywalkingComponentTest.class);
@@ -49,14 +52,18 @@ public class IntegrationTest {
                 abstractComponentTest.setAppName(APP_CODE);
                 abstractComponentTest.setUp();
                 abstractComponentTest.invokeTestController();
-                TimeUnit.SECONDS.sleep(30);
+            }
+            TimeUnit.SECONDS.sleep(60);
+            for (AbstractSkywalkingComponentTest abstractComponentTest : componentTests) {
                 abstractComponentTest.invokeTestController();
                 abstractComponentTest.verifyComponent();
                 abstractComponentTest.teardown();
                 logger.info(abstractComponentTest.getClass().getCanonicalName() + " test passed");
             }
         } finally {
-            executor.close();
+            if (executor != null) {
+                executor.close();
+            }
         }
     }
 }

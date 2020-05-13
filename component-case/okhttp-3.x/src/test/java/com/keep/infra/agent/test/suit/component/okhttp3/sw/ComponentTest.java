@@ -41,18 +41,19 @@ public class ComponentTest extends AbstractSkywalkingComponentTest {
 
     @Before
     public void setUp() throws Exception {
-        mockServer = new MockServer();
-        mockServer.start();
+
         traceQueryClient = new TraceQueryClient("http://172.16.1.40:12800/graphql");
     }
 
     @After
     public void teardown() throws Exception{
-        mockServer.close();
+
     }
 
     @Test
     public void agentTest() throws Exception {
+        mockServer = new MockServer();
+        mockServer.start();
         File directory = new File(".");
         String baseDir = directory.getCanonicalPath();
         String appName = "agent-test-okhttp-v3-" + random.nextInt(9999);
@@ -69,6 +70,7 @@ public class ComponentTest extends AbstractSkywalkingComponentTest {
             verifyComponent();
         } finally {
             executor.close();
+            mockServer.close();
         }
     }
 
@@ -92,7 +94,7 @@ public class ComponentTest extends AbstractSkywalkingComponentTest {
 
     @Override
     public void invokeTestController() throws Exception {
-        try(Response response = httpClient.newCall(new Request.Builder().url("http://localhost:8888" + TEST_API_PATH +
+        try(Response response = httpClient.newCall(new Request.Builder().url(TestConfig.TEST_SERVER_URL + TEST_API_PATH +
                 "?name=" + NAME_POOL[Math.abs(random.nextInt()) % 4]).
                 get().build()).execute()) {
             int code = response.code();

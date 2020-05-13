@@ -40,7 +40,7 @@
         <dependency>
             <groupId>com.keep.commons</groupId>
             <artifactId>commons-storage</artifactId>
-            <version>0.1.12-SNAPSHOT</version>
+            <version>0.1.16</version>
             <exclusions>
                 <exclusion>
                     <artifactId>slf4j-log4j12</artifactId>
