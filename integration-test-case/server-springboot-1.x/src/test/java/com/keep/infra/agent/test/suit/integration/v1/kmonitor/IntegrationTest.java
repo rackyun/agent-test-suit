@@ -49,7 +49,7 @@ public class IntegrationTest {
         }
     }
 
-    @Test
+//    @Test
     public void getSystemResources() throws Exception {
         Enumeration<URL> configs = ClassLoader.getSystemResources("META-INF/" + "infra-log-config");
         while (configs.hasMoreElements()) {
