@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>component-case</artifactId>
-        <groupId>com.keep.infra.agent</groupId>
+        <groupId>org.rackyun.infra.agent</groupId>
         <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -37,19 +37,19 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.keep.infra.agent</groupId>
+            <groupId>org.rackyun.infra.agent</groupId>
             <artifactId>skywalking-test-suit</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.keep.infra.agent</groupId>
-            <artifactId>keep-monitor-test-suit</artifactId>
+            <groupId>org.rackyun.infra.agent</groupId>
+            <artifactId>monitor-test-suit</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.keep.infra.agent</groupId>
+            <groupId>org.rackyun.infra.agent</groupId>
             <artifactId>test-suit-commons</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>

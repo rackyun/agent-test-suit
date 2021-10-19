@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.keep.infra.agent</groupId>
+    <groupId>org.rackyun.infra.agent</groupId>
     <artifactId>agent-test-suit</artifactId>
     <name>Keep Agent Test Suit Project</name>
     <packaging>pom</packaging>
     <version>${revision}</version>
 
-    <scm>
-        <connection>scm:git:ssh://git@phab.gotokeep.com/diffusion/1015/agent-test-suit.git</connection>
-        <developerConnection>scm:git:ssh://git@phab.gotokeep.com/diffusion/1015/agent-test-suit.git</developerConnection>
-        <tag>v1.0.0</tag>
-    </scm>
-
     <modules>
         <module>test-suit-commons</module>
         <module>component-case</module>
         <module>skywalking-test-suit</module>
-        <module>keep-monitor-test-suit</module>
+        <module>monitor-test-suit</module>
         <module>integration-test-case</module>
         <module>mock-server</module>
     </modules>
@@ -72,11 +67,15 @@
                     <systemProperties>
                         <property>
                             <name>skywalking-agent-path</name>
-                            <value>/Users/yunhai.hu/Documents/projects/java-projects/incubator-skywalking/skywalking-agent/skywalking-agent.jar</value>
+                            <value>
+                                /Users/yunhai.hu/Documents/projects/java-projects/incubator-skywalking/skywalking-agent/skywalking-agent.jar
+                            </value>
                         </property>
                         <property>
                             <name>keep-monitor-agent-path</name>
-                            <value>/Users/yunhai.hu/Documents/projects/java-projects/keep-monitor//output/kmonitor-agent.jar</value>
+                            <value>
+                                /Users/yunhai.hu/Documents/projects/java-projects/keep-monitor//output/kmonitor-agent.jar
+                            </value>
                         </property>
                         <property>
                             <name>build-jar-name</name>

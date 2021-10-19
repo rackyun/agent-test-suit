@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>component-case</artifactId>
-        <groupId>com.keep.infra.agent</groupId>
+        <groupId>org.rackyun.infra.agent</groupId>
         <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -13,7 +13,7 @@
 
     <properties>
         <spring-boot.version>1.5.20.RELEASE</spring-boot.version>
-        <start-class>com.keep.infra.agent.test.suit.component.spring.kafka.v1.producer.TestAppMain</start-class>
+        <start-class>org.rackyun.infra.agent.test.suit.component.spring.kafka.v1.producer.TestAppMain</start-class>
     </properties>
 
     <dependencies>
@@ -39,19 +39,19 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.keep.infra.agent</groupId>
+            <groupId>org.rackyun.infra.agent</groupId>
             <artifactId>skywalking-test-suit</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.keep.infra.agent</groupId>
-            <artifactId>keep-monitor-test-suit</artifactId>
+            <groupId>org.rackyun.infra.agent</groupId>
+            <artifactId>monitor-test-suit</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.keep.infra.agent</groupId>
+            <groupId>org.rackyun.infra.agent</groupId>
             <artifactId>test-suit-commons</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
@@ -85,7 +85,9 @@
                         </goals>
                         <configuration>
                             <classifier>producer</classifier>
-                            <mainClass>com.keep.infra.agent.test.suit.component.spring.kafka.v1.producer.TestAppMain</mainClass>
+                            <mainClass>
+                                org.rackyun.infra.agent.test.suit.component.spring.kafka.v1.producer.TestAppMain
+                            </mainClass>
                         </configuration>
                     </execution>
                     <execution>
@@ -95,7 +97,9 @@
                         </goals>
                         <configuration>
                             <classifier>consumer</classifier>
-                            <mainClass>com.keep.infra.agent.test.suit.component.spring.kafka.v1.consumer.TestAppMain</mainClass>
+                            <mainClass>
+                                org.rackyun.infra.agent.test.suit.component.spring.kafka.v1.consumer.TestAppMain
+                            </mainClass>
                         </configuration>
                     </execution>
                 </executions>

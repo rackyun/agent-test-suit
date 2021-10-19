@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>integration-test-case</artifactId>
-        <groupId>com.keep.infra.agent</groupId>
+        <groupId>org.rackyun.infra.agent</groupId>
         <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -21,127 +21,116 @@
         </dependency>
 
         <!--<dependency>
-            <groupId>com.keep.infra.agent</groupId>
+            <groupId>org.rackyun.infra.agent</groupId>
             <artifactId>dubbo-2.6.x</artifactId>
             <version>${project.version}</version>
         </dependency>-->
         <dependency>
-            <groupId>com.keep.infra.agent</groupId>
+            <groupId>org.rackyun.infra.agent</groupId>
             <artifactId>elasticsearch-6.x</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.keep.infra.agent</groupId>
-            <artifactId>hbase-2.x</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.keep.infra.agent</groupId>
+            <groupId>org.rackyun.infra.agent</groupId>
             <artifactId>jedis-2.x</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.keep.infra.agent</groupId>
+            <groupId>org.rackyun.infra.agent</groupId>
             <artifactId>mongodb-3.x</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.keep.infra.agent</groupId>
+            <groupId>org.rackyun.infra.agent</groupId>
             <artifactId>mysql-5.x</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.keep.infra.agent</groupId>
+            <groupId>org.rackyun.infra.agent</groupId>
             <artifactId>spring-kafka-1.x</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.keep.infra.agent</groupId>
+            <groupId>org.rackyun.infra.agent</groupId>
             <artifactId>okhttp-3.x</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.keep.infra.agent</groupId>
+            <groupId>org.rackyun.infra.agent</groupId>
             <artifactId>tomcat-7.x-8.x</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <!--test jar-->
         <!--<dependency>
-            <groupId>com.keep.infra.agent</groupId>
+            <groupId>org.rackyun.infra.agent</groupId>
             <artifactId>dubbo-2.6.x</artifactId>
             <version>${project.version}</version>
             <type>test-jar</type>
         </dependency>-->
         <dependency>
-            <groupId>com.keep.infra.agent</groupId>
+            <groupId>org.rackyun.infra.agent</groupId>
             <artifactId>elasticsearch-6.x</artifactId>
             <version>${project.version}</version>
             <type>test-jar</type>
         </dependency>
         <dependency>
-            <groupId>com.keep.infra.agent</groupId>
-            <artifactId>hbase-2.x</artifactId>
-            <version>${project.version}</version>
-            <type>test-jar</type>
-        </dependency>
-        <dependency>
-            <groupId>com.keep.infra.agent</groupId>
+            <groupId>org.rackyun.infra.agent</groupId>
             <artifactId>jedis-2.x</artifactId>
             <version>${project.version}</version>
             <type>test-jar</type>
         </dependency>
         <dependency>
-            <groupId>com.keep.infra.agent</groupId>
+            <groupId>org.rackyun.infra.agent</groupId>
             <artifactId>mongodb-3.x</artifactId>
             <version>${project.version}</version>
             <type>test-jar</type>
         </dependency>
         <dependency>
-            <groupId>com.keep.infra.agent</groupId>
+            <groupId>org.rackyun.infra.agent</groupId>
             <artifactId>mysql-5.x</artifactId>
             <version>${project.version}</version>
             <type>test-jar</type>
         </dependency>
         <dependency>
-            <groupId>com.keep.infra.agent</groupId>
+            <groupId>org.rackyun.infra.agent</groupId>
             <artifactId>spring-kafka-1.x</artifactId>
             <version>${project.version}</version>
             <type>test-jar</type>
         </dependency>
         <dependency>
-            <groupId>com.keep.infra.agent</groupId>
+            <groupId>org.rackyun.infra.agent</groupId>
             <artifactId>okhttp-3.x</artifactId>
             <version>${project.version}</version>
             <type>test-jar</type>
         </dependency>
         <dependency>
-            <groupId>com.keep.infra.agent</groupId>
+            <groupId>org.rackyun.infra.agent</groupId>
             <artifactId>tomcat-7.x-8.x</artifactId>
             <version>${project.version}</version>
             <type>test-jar</type>
         </dependency>
 
         <dependency>
-            <groupId>com.keep.infra.agent</groupId>
+            <groupId>org.rackyun.infra.agent</groupId>
             <artifactId>skywalking-test-suit</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.keep.infra.agent</groupId>
-            <artifactId>keep-monitor-test-suit</artifactId>
+            <groupId>org.rackyun.infra.agent</groupId>
+            <artifactId>monitor-test-suit</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.keep.infra.agent</groupId>
+            <groupId>org.rackyun.infra.agent</groupId>
             <artifactId>test-suit-commons</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.keep.infra.agent</groupId>
+            <groupId>org.rackyun.infra.agent</groupId>
             <artifactId>mock-server</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
